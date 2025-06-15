@@ -1,13 +1,12 @@
 import { useLocation } from "react-router-dom";
 import AppRouter from "./components/AppRouter";
-import NavBar from "./components/NavBar";
-import Footer from "./components/Footer";
+import NavBar from "./components/Common/NavBar";
+import Footer from "./components/Common/Footer";
 import { observer } from "mobx-react-lite";
 import { useContext, useEffect, useState } from "react";
 import { Context } from ".";
 import { check } from "./http/userAPI";
 import AdminNavBar from "./components/Admin/AdminNavBar";
-import { ADMIN_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE } from "./utils/consts";
 import { adminRoutes, authRoutes } from "./routes";
 const App = observer(() => {
   const { user } = useContext(Context);

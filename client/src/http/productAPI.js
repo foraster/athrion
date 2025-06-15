@@ -14,10 +14,11 @@ export const fetchProductsByCategory = async (category = null) => {
     return data
 }
 
-export const fetchProducts = async () => {
-    const {data} = await $host.get('api/product');
-    return data
-}
+export const fetchProducts = async (active = null) => {
+  const query = active !== null ? `?active=${active}` : "";
+  const { data } = await $host.get(`api/product${query}`);
+  return data;
+};
 
 export const fetchOneProduct = async (id) => {
     const {data} = await $host.get('api/product/' + id)
@@ -31,5 +32,10 @@ export const deleteProduct = async (id) => {
 
 export const updateProduct = async (id, product) => {
     const {data} = await $host.post('api/product/update/' + id, product)
+    return data
+}
+
+export const updateProductIsActive = async (id, isActive) => {
+    const {data} = await $host.post('api/product/update/active/' + id, isActive)
     return data
 }

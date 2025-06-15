@@ -25,6 +25,9 @@ export const CONTACT_ROUTE = "/kontakt";
 export const PRIVACY_ROUTE = "/legal/datenschutz";
 export const IMPRESSUM_ROUTE = "legal/impressum";
 
+// Common
+export const IMPORT_ROUTE = "/import";
+
 export const statusMap = {
   in_progress: "In Bearbeitung",
   in_delivery: "Wird geliefert",

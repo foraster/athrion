@@ -1,10 +1,19 @@
-import React, { useState } from "react";
+import  { useEffect, useState } from "react";
 import CheckoutSteps from "../components/Checkout/CheckoutSteps";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 
 
 const CheckoutPage = () => { 
-  
+  useEffect(() => {
+    const saved = localStorage.getItem("savedAddress");
+    if (saved) {
+      try {
+        setAddress(JSON.parse(saved));
+      } catch (e) {
+        console.error("Fehler beim Wiederherstellen der Adresse:", e);
+      }
+    }
+  }, []);
   const [address, setAddress] = useState({
       firstName: "",
       lastName: "",

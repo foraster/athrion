@@ -1,12 +1,13 @@
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../../index";
-import { ADDRESS_ROUTE, CHECKOUT_ADDRESS_ROUTE, CHECKOUT_ROUTE, LOGIN_ROUTE } from "../../utils/consts";
+import { CHECKOUT_ADDRESS_ROUTE, CHECKOUT_ROUTE, LOGIN_ROUTE } from "../../utils/consts";
 
 const StepLogin = () => {
   const { user } = useContext(Context);
   const navigate = useNavigate();
 
+  // Redirect to address step if user is authenticated or to login if not
   useEffect(() => {
     if (user.isAuth) {
       navigate(CHECKOUT_ROUTE + '/' + CHECKOUT_ADDRESS_ROUTE);

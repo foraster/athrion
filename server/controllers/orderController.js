@@ -3,11 +3,11 @@ const ApiError = require("../error/ApiError");
 
 class OrderController {
   async create(req, res, next) {
-    const { userId, totalPriceCents, products } = req.body;
-    if (!userId || !totalPriceCents || !products) {
+    const { userId, totalPriceCents, products, address, paymentMethod } = req.body;
+    if (!userId || !totalPriceCents || !products || !address || !paymentMethod) {
       return next(
         ApiError.badRequest(
-          "The userId, totalPriceCents and products must be provided"
+          "The userId, totalPriceCents, products and address must be provided"
         )
       );
     }
@@ -15,6 +15,8 @@ class OrderController {
       userId,
       total_price_cents: totalPriceCents,
       status: "in_progress",
+      shipping_address: address,
+      paymentMethod: paymentMethod,
     });
 
     for (const item of products) {
@@ -95,20 +97,21 @@ class OrderController {
   }
   async changeStatus(req, res, next) {
     const { status } = req.body;
-    const { orderId } = req.params;
-    if (!orderId || !status) {
+    const { id } = req.params;
+    if (!id || !status) {
       return next(ApiError.badRequest("OrderID and status must be provided"));
     }
     try {
-      const order = await Order.findOne({ where: { id: orderId } });
+      const order = await Order.findOne({ where: {id} });
       if (!order) {
         return next(ApiError.notFound("Order was not found"));
       }
       await order.update({
         status: status,
       });
-      return res.json({ message: "Order successfully created" });
+      return res.json({ message: "Order successfully updated" });
     } catch (error) {
+      console.error(error)
       return next(ApiError.internal("Failed to change order status"));
     }
   }

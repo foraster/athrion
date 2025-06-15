@@ -15,16 +15,18 @@ export const fetchOneOrder = async (orderId) => {
     return data
 }
 
-export const createOrder = async (userId, totalPriceCents, products) => {
+export const createOrder = async (userId, totalPriceCents, products, address, paymentMethod) => {
     const orderId = await $host.post('api/order/create', {
     userId,
     totalPriceCents,
-    products
+    products,
+    address,
+    paymentMethod,
   })
     return orderId
 }
 
 export const updateOrderStatus = async (orderId, status) => {
-    const {data} = await $host.post('api/order/' + orderId, {status})
-    return data;
-}
+  const { data } = await $host.post(`api/order/${orderId}`, { status });
+  return data;
+};

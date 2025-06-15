@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate   } from "react-router-dom";
 import Sidebar from "../components/Admin/Sidebar";
 import { adminRoutes } from "../routes";
 import RequireAdmin from "../middleware/requireAdmin";
+import { ADMIN_ROUTE, DASHBOARD_ROUTE } from "../utils/consts";
 
 const Admin = () => {
   return (
-    <div className="min-h-screen flex bg-[#0f0f0f] text-white">
+    <div className="min-h-screen flex bg-black text-white">
       {/* Sidebar */}
       <Sidebar />
 
@@ -22,9 +22,9 @@ const Admin = () => {
                   <Component />
                 </RequireAdmin>
               }
-              exact
             />
           ))}
+          <Route path="*" element={<Navigate to={ADMIN_ROUTE + DASHBOARD_ROUTE} replace />}/>
         </Routes>
       </main>
     </div>

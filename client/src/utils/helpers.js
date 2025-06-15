@@ -4,8 +4,9 @@ export const formatDate = (isoDate) => {
 }; 
 
 export function toCents(euroPrice) {
-  const value = typeof euroPrice === "string" ? parseFloat(euroPrice) : euroPrice;
-  return Math.round((value + Number.EPSILON) * 100);
+  const cleaned = typeof euroPrice === "string" ? euroPrice.replace(",", ".") : euroPrice;
+  const value = parseFloat(cleaned);
+  return isNaN(value) ? NaN : Math.round((value + Number.EPSILON) * 100);
 }
 
 export function fromCents(cents) {
@@ -13,7 +14,7 @@ export function fromCents(cents) {
 }
 
 export function formatOrderId(orderId) {
-  return "ATH-" + orderId.split('-')[0].toUpperCase() + '-' + orderId.split('-')[4].substring(0, 4).toUpperCase();
+  return "ATH-" + orderId.split('-')[0].toUpperCase() + '-' + orderId.split('-')[3].toUpperCase();
 }
 
 export const getUpdatedSortConfig = (currentConfig, key) => {

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import  { useContext } from "react";
 import { useOutletContext } from "react-router-dom";
 import { Context } from "../../index";
 import { CHECKOUT_ADDRESS_ROUTE, CHECKOUT_ROUTE } from "../../utils/consts";
@@ -10,6 +10,7 @@ const StepConfirmation = () => {
   const { user } = useContext(Context);
   const { onBack, onNext, address, paymentMethod } = useOutletContext();
   const { cart } = useContext(Context);
+  // Ensure user is authenticated and address is complete before proceeding
   useStepGuard(
     user.user.id &&
       address?.firstName &&
@@ -21,12 +22,14 @@ const StepConfirmation = () => {
     CHECKOUT_ROUTE + "/" + CHECKOUT_ADDRESS_ROUTE
   );
 
-
-
+  // Confirm order and clear cart
   const handleConfirm = async () => {
     try {
-      await createOrder(user.user.id, cart.totalPriceCents, cart.products);
+      await createOrder(user.user.id, cart.totalPriceCents, cart.products, address, paymentMethod);
       cart.clear();
+      if (address.save) {
+        localStorage.setItem("savedAddress", JSON.stringify(address));
+      }
       onNext();
     } catch (error) {
       console.error("Failed to confirm order:", error);

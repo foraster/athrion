@@ -25,8 +25,8 @@ export const logout = async () => {
 
 export const check = async () => {
   try {
-    const { data } = await $host.get("api/user/auth"); // <--- использует куки
-    return data; // { id, email, role }
+    const { data } = await $host.get("api/user/auth");
+    return data; 
   } catch (error) {
     console.error("Check failed:", error?.response?.data || error.message);
     return null;

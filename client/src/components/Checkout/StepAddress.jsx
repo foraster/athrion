@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import { useStepGuard } from "../../hooks/useStepGuard";
 import { CHECKOUT_LOGIN_ROUTE, CHECKOUT_ROUTE } from "../../utils/consts";
@@ -9,6 +9,8 @@ const StepAddress = () => {
   const { onNext, onBack, setAddress, address } = useOutletContext();
   useStepGuard(user.isAuth, CHECKOUT_ROUTE + '/' + CHECKOUT_LOGIN_ROUTE)
   const [error, setError] = useState("");
+
+  // Handle input changes for address fields
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setAddress((prev) => ({
@@ -17,6 +19,7 @@ const StepAddress = () => {
     }));
   };
 
+  // Validate and submit address
   const handleSubmit = () => {
     const required = ["firstName", "lastName", "addressLine1", "zip", "city"];
     for (let field of required) {
@@ -25,7 +28,6 @@ const StepAddress = () => {
         return;
       }
     }
-
     setError("");
     onNext();
   };
@@ -33,7 +35,6 @@ const StepAddress = () => {
   return (
     <div className="space-y-6">
       <h2 className="text-2xl font-semibold">Lieferadresse</h2>
-
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <input
           name="firstName"

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Context } from '..';
 import { useEffect } from 'react';
@@ -6,7 +6,6 @@ import { fetchOrderByUserId } from '../http/orderAPI';
 import { useState } from 'react';
 import { formatDate, formatOrderId, fromCents } from '../utils/helpers';
 import {statusMap} from '../utils/consts'; 
-import { fetchName } from '../http/userAPI';
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -26,7 +25,7 @@ const Profile = () => {
   if (user.isAuth && user.user.id) {
     fetchData();
   }
-  }, [user.user.id])
+  }, [user.user.id, user.isAuth])
 
   
 
@@ -47,8 +46,8 @@ const Profile = () => {
       <div className="bg-[#161616] rounded-2xl p-6 border border-neutral-800 shadow-md">
         <h2 className="text-xl font-semibold mb-6">Persönliche Daten</h2>
         <div className="space-y-3 text-md">
-          <p><span className="text-gray-400">Name:</span> {user.firstName} {user.lastName}</p>
-          <p><span className="text-gray-400">E-Mail:</span> {user.email}</p>
+          <p><span className="text-gray-400">Name: </span>{user.firstName} {user.lastName}</p>
+          <p><span className="text-gray-400">E-Mail: </span>{user.email}</p>
           <p><span className="text-gray-400">Password: </span>●●●●●●●●●●</p>
         </div>
         

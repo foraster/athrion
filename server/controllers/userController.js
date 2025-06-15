@@ -3,11 +3,11 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { User, Cart } = require("../models/models");
 
-const generateJwt = (id, email, role) => {
-  return jwt.sign({ id, email, role }, process.env.SECRET_KEY, {
+const generateJwt = (id, role) => {
+  return jwt.sign({ id, role }, process.env.SECRET_KEY, {
     expiresIn: "24h",
   });
-};
+};``
 
 class UserController {
   async registration(req, res, next) {

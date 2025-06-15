@@ -1,4 +1,3 @@
-import React from "react";
 import { useOutletContext } from "react-router-dom";
 import { useStepGuard } from "../../hooks/useStepGuard";
 import { CHECKOUT_ADDRESS_ROUTE, CHECKOUT_ROUTE } from "../../utils/consts";
@@ -6,14 +5,17 @@ import { CHECKOUT_ADDRESS_ROUTE, CHECKOUT_ROUTE } from "../../utils/consts";
 const StepPayment = () => {
   const { onNext, onBack, address, paymentMethod, setPaymentMethod } =
     useOutletContext();
+  // Ensure the address is complete before proceeding
   useStepGuard(
-        address?.firstName &&
-          address?.lastName &&
-          address?.addressLine1 &&
-          address?.zip &&
-          address?.city,
-        CHECKOUT_ROUTE + "/" + CHECKOUT_ADDRESS_ROUTE)
+    address?.firstName &&
+      address?.lastName &&
+      address?.addressLine1 &&
+      address?.zip &&
+      address?.city,
+    CHECKOUT_ROUTE + "/" + CHECKOUT_ADDRESS_ROUTE
+  );
 
+  // Handle payment method selection
   const handleSubmit = (e) => {
     e.preventDefault();
     onNext();
@@ -22,7 +24,6 @@ const StepPayment = () => {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <h2 className="text-2xl font-semibold">Zahlungsart wählen</h2>
-
       <div className="space-y-3">
         <label className="block">
           <input

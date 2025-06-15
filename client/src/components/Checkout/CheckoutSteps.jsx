@@ -1,4 +1,3 @@
-import React from "react";
 import "../../styles/checkout.css";
 
 const steps = ["Einloggen", "Adresse", "Zahlung", "Bestätigen", "Fertig"];
@@ -6,6 +5,7 @@ const steps = ["Einloggen", "Adresse", "Zahlung", "Bestätigen", "Fertig"];
 const CheckoutSteps = ({ step }) => {
   return (
     <div className="flex justify-between mb-2">
+      // Render each step with appropriate styles
       {steps.map((label, index) => {
         const number = index + 1;
         const isActive = number === step;

@@ -20,6 +20,7 @@ import {
   CHECKOUT_ROUTE,
   ORDER_DETAILS_ROUTE,
   ADMIN_ROUTE,
+  IMPORT_ROUTE,
 } from "./utils/consts";
 import Cart from "./pages/ShoppingCart";
 import Shop from "./pages/Shop";
@@ -32,14 +33,22 @@ import Privacy from "./pages/Privacy";
 import Impressum from "./pages/Impressum";
 import Profile from "./pages/Profile";
 import Dashboard from "./components/Admin/Dashboard";
-import OrderList from "./components/Admin/OrderList";
+import OrderList from "./components/Admin/OrderListAdmin";
 import ProductForm from "./components/Admin/ProductForm";
 import ProductListAdmin from "./components/Admin/ProductListAdmin";
-import Settings from "./components/Admin/Settings";
+import Settings from "./components/Admin/AdminSettings";
 import UserList from "./components/Admin/UserList";
 import CheckoutPage from "./pages/CheckoutPage";
 import OrderDetails from "./pages/OrderDetails";
 import Admin from "./pages/Admin";
+import AdminSettings from "./components/Admin/AdminSettings";
+import SettingsProfile from "./components/Admin/Settings/SettingsProfile ";
+import SettingsGeneral from "./components/Admin/Settings/SettingsGeneral";
+import SettingsPayments from "./components/Admin/Settings/SettingsPayments ";
+import SettingsShipping from "./components/Admin/Settings/SettingsShipping";
+import SettingsEmails from "./components/Admin/Settings/SettingsEmails";
+import SettingsSecurity from "./components/Admin/Settings/SettingsSecurity";
+import ProductImportPreview from "./components/Admin/ProductImportPreview";
 
 export const adminRoutes = [
   {
@@ -59,6 +68,10 @@ export const adminRoutes = [
     Component: ProductListAdmin,
   },
   {
+    path: PRODUCTS_ROUTE + IMPORT_ROUTE,
+    Component: ProductImportPreview,
+  },
+  {
     path: ADD_PRODUCT_ROUTE,
     Component: ProductForm,
   },
@@ -74,7 +87,34 @@ export const adminRoutes = [
     path: SETTINGS_ROUTE,
     Component: Settings,
   },
-  
+    {
+    path: ADMIN_ROUTE + SETTINGS_ROUTE,
+    Component: AdminSettings,
+  },
+  {
+    path: SETTINGS_ROUTE + "/general",
+    Component: SettingsGeneral,
+  },
+  {
+    path: SETTINGS_ROUTE + "/profile",
+    Component: SettingsProfile,
+  },
+  {
+    path: SETTINGS_ROUTE + "/payments",
+    Component: SettingsPayments,
+  },
+  {
+    path: SETTINGS_ROUTE + "/shipping",
+    Component: SettingsShipping,
+  },
+  {
+    path: SETTINGS_ROUTE + "/emails",
+    Component: SettingsEmails,
+  },
+  {
+    path: SETTINGS_ROUTE + "/security",
+    Component: SettingsSecurity,
+  },
 ];
 
 export const authRoutes = [

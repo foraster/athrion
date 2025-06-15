@@ -67,6 +67,12 @@ const Product = sequelize.define("product", {
   },
   subcategory: { type: DataTypes.STRING },
   description: { type: DataTypes.JSON },
+  isActive: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false },
+  stock_quantity: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    defaultValue: 0,
+  }
 });
 
 const Order = sequelize.define("order", {
@@ -85,6 +91,14 @@ const Order = sequelize.define("order", {
     ),
     allowNull: false,
     defaultValue: "in_progress",
+  },
+  shipping_address: {
+    type: DataTypes.JSON,
+    allowNull: false,
+  },
+  paymentMethod: {
+    type: DataTypes.STRING,
+    allowNull: false,
   },
 });
 
