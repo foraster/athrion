@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
 import AppRouter from "./components/AppRouter";
-import NavBar from "./components/Common/NavBar";
+import NavBar from "./components/Common/NavBar/NavBar";
 import Footer from "./components/Common/Footer";
 import { observer } from "mobx-react-lite";
 import { useContext, useEffect, useState } from "react";

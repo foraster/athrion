@@ -18,7 +18,6 @@ const ShoppingCart = observer(() => {
       cart.removeProduct(id);
     }, 300);
   };
-  
 
   return (
     <div className="bg-black text-white min-h-screen py-16 px-6">
@@ -41,7 +40,7 @@ const ShoppingCart = observer(() => {
               <img
                 src={process.env.REACT_APP_API_URL + item.image}
                 alt={item.title}
-                className="w-20 h-20 object-contain mr-6 rounded-lg"
+                className="w-20 h-20 object-contain mr-6 rounded-lg hidden md:block"
               />
               <div className="flex-grow">
                 <p className="text-lg font-semibold">{item.title}</p>

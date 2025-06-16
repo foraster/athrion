@@ -34,9 +34,9 @@ const ProductPage = () => {
   return (
     <div className="min-h-screen bg-black text-white px-6 py-10">
       {showModal && <NotifyModal message={message} setShowModal={setShowModal} type={type}/>}
-      <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+      <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 ">
         {/* Image */}
-        <div>
+        <div className="w-full md:inline flex justify-center">
           <img
             src={process.env.REACT_APP_API_URL + product.image}
             alt={product.title}
@@ -46,32 +46,36 @@ const ProductPage = () => {
 
         {/* Name and price */}
         <div className="flex flex-col justify-center gap-6">
-          <h1 className="text-3xl font-bold">{product.title}</h1>
-          <p className="text-2xl text-gray-300">
-            {fromCents(product.price_cents)} €
-          </p>
-          {product.stock_quantity > 0 ? 
-            <p>
-              <span className="text-green-400">Verfügbar</span> noch{" "}
-              {product.stock_quantity} Stück
-            </p>
-           : 
-            <p className="text-red-400">Ausverkauft</p>
-          }
-          {product.stock_quantity > 0 ?
-          <button
-            onClick={() => cart.addProduct(product)}
-            className="w-fit px-6 py-3 border border-white rounded hover:bg-white hover:text-black transition"
-          >
-            In den Warenkorb
-          </button>
-          : <button
-            onClick={handleEmailNotify}
-            className="w-fit px-6 py-3 border border-white rounded hover:bg-white hover:text-black transition"
-          >
-            Melden um Ankunft der Ware
-          </button>
-}
+          <h1 className="text-2xl md:text-3xl font-bold">{product.title}</h1>
+          <div className="flex gap-2 items-center justify-between md:flex-col md:items-start md:gap-6">
+            <div className="text-base md:text-2xl space-y-1">
+              <p className=" text-gray-300">
+                {fromCents(product.price_cents)} €
+              </p>
+              {product.stock_quantity > 0 ? 
+                <p className="text-sm md:text-base">
+                  <span className="text-green-400 ">Verfügbar</span> noch{" "}
+                  {product.stock_quantity} Stück
+                </p>
+               : 
+                <p className="text-red-400 text-sm md:text-base">Ausverkauft</p>
+              }
+            </div>
+            {product.stock_quantity > 0 ?
+            <button
+              onClick={() => cart.addProduct(product)}
+              className="w-fit px-4 py-2 border border-white rounded hover:bg-white hover:text-black transition"
+            >
+              In den Warenkorb
+            </button>
+            : <button
+              onClick={handleEmailNotify}
+              className="w-fit px-6 py-3 border border-white rounded hover:bg-white hover:text-black transition"
+            >
+              Melden um Ankunft der Ware
+            </button>
+  }
+          </div>
         </div>
       </div>
 

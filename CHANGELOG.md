@@ -14,4 +14,12 @@
 - Added admin settings components.
 - Improved all admin-related components.
 
+## [0.3.0] - 2025-06-16
+### Changed (Client)
+- Reworked `NavBar` with responsive burger menu.
+- Extracted `NavLinks` and `BurgerButton` into separate components.
+- Improved product image alignment and typography.
+- Enhanced product availability section and stock indicator.
+- Adjusted layout for better mobile responsiveness.
+
 **Note:** This client version requires **server >= 2.0.0**
