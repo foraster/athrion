@@ -7,6 +7,8 @@
 # === Server ===
 /server/node_modules
 /server/dist
+/server/static/*
+!/server/static/placeholder.jpg
 
 # === General ===
 .DS_Store

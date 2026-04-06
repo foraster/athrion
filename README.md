@@ -22,7 +22,7 @@ Backend: Node.js, Express, Sequelize, PostgreSQL, JWT, bcrypt, express-fileuploa
 To run Athrion locally:
 
 1. Clone the repository
-2. Set up environment variables in `server/.env` (see `.env.example`)
+2. Set up environment variables in `server/.env` and `client/.env` (see `.env.example`)
 3. Install dependencies in both `client/` and `server/`
 4. Start both servers
 
