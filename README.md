@@ -6,7 +6,7 @@ The project focuses on full-stack architecture, authentication, business workflo
 
 ## Tech Stack
 
-Frontend: React, React Router, MobX, Axios, Bootstrap, Tailwind CSS, Recharts  
+Frontend: React, MobX, Axios, Tailwind CSS  
 Backend: Node.js, Express, Sequelize, PostgreSQL, JWT, bcrypt, express-fileupload
 
 ## Key Features
